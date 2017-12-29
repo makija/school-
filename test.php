@@ -3,7 +3,7 @@
 
 require 'config.php';
 
-$x= School::get(2);
+$x= School::pagination();
 
 print_r($x);
 

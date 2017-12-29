@@ -29,6 +29,7 @@
 
 
   var offset = 0;
+  var pagesNum = '';
 
 
 
@@ -48,9 +49,11 @@
    console.log(result);
 
       $('#schList').html(result.htmlTable);
-
-    
       $('#pagination').html(result.pagesLinks);
+
+      pagesNum = result.pagesNum;
+
+
       
 
     }
@@ -65,7 +68,7 @@
 
     if(p==='next'){
 
-      if(offset>=(5*(3-1))){offset-=5}
+      if(offset>=(5*(pagesNum - 1))){offset-=5}
       console.log(p);
 
       page++;
@@ -127,6 +130,68 @@
    
      
   }
+  
+
+  // $('.btnDelete').click(function() {
+  //           alert($(this).attr("value"));})
+
+  function remove(id){
+
+    $.ajax({
+
+      url:'app/api/deleteSchoolApi.php',
+      method:'post',
+      data:{
+        id:id
+      },
+      success:function(){
+
+        $(document).ready(function(){
+
+       $.ajax({
+       url:'app/api/schoolListApi.php',
+       method:'post',
+       data:{
+      
+      offset:offset
+    },
+    dataType:'json',
+    success:function(result){
+    
+      
+   console.log(result);
+
+      $('#schList').html(result.htmlTable);
+      $('#pagination').html(result.pagesLinks);
+
+      pagesNum = result.pagesNum;
+
+
+      
+
+    }
+
+
+  })
+})
+
+
+        // console.log(result);
+
+        // setTimeout(function(){$('#schList').html(result.htmlTable),3000})
+
+          
+        
+
+         
+
+      }
+    })
+  }
+    
+
+
+
 
   
 

@@ -57,6 +57,22 @@ abstract class Records{
 
 	}
 
+
+	static function pageNum(){
+
+		$key = static::$key;
+		$table = static::$table;
+
+		$db=Database::conn();
+
+		$p=$db->query('SELECT COUNT('.$key.') from '.$table);
+        $p->setFetchMode(PDO::FETCH_NUM);
+        $p->execute();
+        $pages = $p->fetch();
+        return $pagesNum = ceil($pages[0]/5);
+
+	}
+
 	function generateFields(){
 
 		$fields='';
@@ -103,7 +119,7 @@ abstract class Records{
 
 
 
-	static function  delete($id){
+	 function  delete($id){
 		$db = Database::conn();
 		$table = static::$table;
 		$key = static::$key;
@@ -113,6 +129,8 @@ abstract class Records{
 		$db->exec($query);
 		
 	}
+
+
   
 
 
