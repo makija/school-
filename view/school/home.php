@@ -61,23 +61,31 @@
 
   function requestPage(p){
 
-    
+    var page=1;
 
-    if(p==='next' && offset<(5*3)){
+    if(p==='next'){
+
+      if(offset>=(5*(3-1))){offset-=5}
       console.log(p);
+
+      page++;
         
     offset+=5;
 
     console.log(offset);
+    console.log(page);
        
 
     }
 
-    else if(p==='prev'&& offset >0){
+    else if(p==='prev'){
+       if(offset<=0) {offset+=5}
+      page--;
      
       offset-=5;
 
       console.log(offset);
+      console.log(page);
 
     }
 
@@ -85,8 +93,10 @@
      
      
        offset = (p-1) * 5;
+       page = p;
 
         console.log(offset);
+        console.log(page);
 
     }
 
@@ -97,7 +107,8 @@
     method:'post',
     data:{
       
-      offset:offset
+      offset:offset,
+      page:page
     },
     dataType:'json',
     success:function(result){

@@ -14,15 +14,15 @@ $pages = $p->fetch();
 $pagesNum= ceil($pages[0]/5);
 
 
-$page = $_POST['page'];
-
 $offset= $_POST['offset'];
+$page= $_POST['page'];
+
 
 $prev="'prev'";
 $next="'next'";
 
 
-$schools= School::getAll('order by sch_year desc limit 5 offset ' .$offset);
+$schools= School::getAll('order by sch_year desc limit 5 offset '.$offset  );
  
 
 $output='';
@@ -49,7 +49,7 @@ $i=0;
 
  for( $i= 1; $i<=$pagesNum; $i++){
 
- 	$pagesLinks.='<li  onclick="requestPage('.$i.')" class="page-item"  ><a  class="page-link" href="#">'.$i.'</a></li>';
+ 	$pagesLinks.='<li  onclick="requestPage('.$i.')" class="page-item" > <a  class="page-link" href="#">'.$i.'</a></li>';
  }
     
     $pagesLinks.='<li onclick="requestPage( '.$next.' )" class="page-item"><a class="page-link" href="#">Next</a></li>';
