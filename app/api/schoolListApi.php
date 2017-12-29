@@ -18,9 +18,12 @@ $page = $_POST['page'];
 
 $offset= $_POST['offset'];
 
+$prev="'prev'";
+$next="'next'";
 
-$schools= School::getAll('order by sch_year desc limit 5 offset '. $offset);
- // 
+
+$schools= School::getAll('order by sch_year desc limit 5 offset ' .$offset);
+ 
 
 $output='';
 $i=0;
@@ -38,11 +41,24 @@ $i=0;
                 <td>'.$school->sch_year.'</td>  
            </tr>  
       ';  
- }  
+ } 
+
+ $pagesLinks=''; 
+
+ $pagesLinks.=' <li  onclick="requestPage('.$prev.')" class="page-item"  ><a  class="page-link" href="#">Previous</a></li>';
+
+ for( $i= 1; $i<=$pagesNum; $i++){
+
+ 	$pagesLinks.='<li  onclick="requestPage('.$i.')" class="page-item"  ><a  class="page-link" href="#">'.$i.'</a></li>';
+ }
+    
+    $pagesLinks.='<li onclick="requestPage( '.$next.' )" class="page-item"><a class="page-link" href="#">Next</a></li>';
 
 $data=[];
 
- $data=['htmlTable'=>$output, 'pagesNum'=>$pagesNum];
+
+
+ $data=['htmlTable'=>$output, 'pagesLinks'=>$pagesLinks];
 
 
 echo json_encode($data);

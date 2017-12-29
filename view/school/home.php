@@ -21,40 +21,72 @@
 
 <nav aria-label="Page navigation example">
   <ul class="pagination" id="pagination">
-    <li  onclick='requestPage("prev")' class="page-item"  ><a  class="page-link" href="#">Previous</a></li>
-    
-    <li onclick='requestPage("next")' class="page-item"><a class="page-link" href="#">Next</a></li>
+   
   </ul>
 </nav>
 
 <script>
 
-  var page = 0;
+
   var offset = 0;
+
+
+
+  $(document).ready(function(){
+
+  $.ajax({
+    url:'app/api/schoolListApi.php',
+    method:'post',
+    data:{
+      
+      offset:offset
+    },
+    dataType:'json',
+    success:function(result){
+    
+      
+   console.log(result);
+
+      $('#schList').html(result.htmlTable);
+
+    
+      $('#pagination').html(result.pagesLinks);
+      
+
+    }
+
+
+  })
+});
 
   function requestPage(p){
 
     
 
-    if(p==='next'){
-      console.log(page);
-
-      page++;
+    if(p==='next' && offset<(5*3)){
+      console.log(p);
+        
     offset+=5;
+
+    console.log(offset);
        
 
     }
 
-    else if(p==='prev'){
-      console.log(page);
-      page--;
+    else if(p==='prev'&& offset >0){
+     
       offset-=5;
+
+      console.log(offset);
 
     }
 
     else {
-      console.log(page);
+     
+     
        offset = (p-1) * 5;
+
+        console.log(offset);
 
     }
 
@@ -64,7 +96,7 @@
     url:'app/api/schoolListApi.php',
     method:'post',
     data:{
-      page:page,
+      
       offset:offset
     },
     dataType:'json',
@@ -86,35 +118,5 @@
   }
 
   
-$(document).ready(function(){
 
-  $.ajax({
-    url:'app/api/schoolListApi.php',
-    method:'post',
-    data:{
-      page:page,
-      offset:offset
-    },
-    dataType:'json',
-    success:function(result){
-    
-      
-   
-
-      $('#schList').html(result.htmlTable);
-
-     for(var i = result.pagesNum; i>=1;i--){
-
-      console.log(i);
-
-      $('#pagination li:first-child').after('<li id='+ i +' class="page-item"><a class="page-link" href="#">'+ i +'</a></li>');
-     }
-      
-      
-
-    }
-
-
-  })
-});
 </script>
