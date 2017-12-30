@@ -131,13 +131,13 @@
      
   }
   
-
-  // $('.btnDelete').click(function() {
-  //           alert($(this).attr("value"));})
-
   function remove(id){
 
-    $.ajax({
+    var con = confirm("Are you sure you want to remove this school from database?")
+
+    if(con==true){
+
+       $.ajax({
 
       url:'app/api/deleteSchoolApi.php',
       method:'post',
@@ -176,17 +176,14 @@
 })
 
 
-        // console.log(result);
-
-        // setTimeout(function(){$('#schList').html(result.htmlTable),3000})
-
-          
-        
-
-         
-
       }
     })
+
+
+
+    }
+
+   
   }
     
 

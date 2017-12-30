@@ -20,12 +20,38 @@ public function createSchool(){
 
   if(isset($_POST['newSch'])){
 
-  	$this->sch_name = $_POST['schName'];
-  	$this->sch_year = $_POST['schYear'];
-  	$this->sch_city = isset($_POST['schCity'])?$_POST['schCity'] : '';
+    if(!empty($_POST['schName']) && !empty($_POST['schYear']) && is_string($_POST['schName'])  && is_numeric($_POST['schYear'])){
+    
+    $chTagsN = strip_tags($_POST['schName']);
+    $name = trim($chTagsN);
+    $this->sch_name = $name;
+
+     $chTagsY = strip_tags($_POST['schYear']);
+     $year = trim($chTagsY);
+
+     $this->sch_year = $year;
+
+     if(isset($_POST['schCity']) && is_string($_POST['schCity'])){
+      $chTagsC = strip_tags($_POST['schCity']);
+      $city = trim($chTagsC);
+      $this->sch_city = $city;
+
+     }  
+
+     $this->save();
+
+    }
+
+    else {
+      echo "Invalid data";
+    }
+
+  	
+  	
+  	
 
 
-  	$this->save();
+  	
   }
 
 

@@ -1,11 +1,10 @@
 <?php
 
+ 
+$x=   "                             afaffaf   akakakakkak   ";
+$y= trim($x);
 
-require 'config.php';
-
-$x= School::pagination();
-
-print_r($x);
+echo $y;
 
 
 
