@@ -27,6 +27,9 @@ class teacherController extends baseController {
 
 		$this->schools= School::getAll();
 
+		 $s= new Teacher;
+        $s->createTeacher();
+
   
 
   return $this->getTeachers('createTeach');
@@ -35,6 +38,17 @@ class teacherController extends baseController {
 
 	public function edit(){
 		$this->navigation();
+
+		$t= $this->schools = School::getAll();
+
+		 $id = $_GET['id'];
+		 $from = 'teachers.*, schools.sch_name';
+         $join = 'join schools using (sch_id)';
+
+	    $this->teacher = Teacher::get($id,$from,$join);	
+
+
+	   
 
   
 

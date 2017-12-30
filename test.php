@@ -1,15 +1,29 @@
 <?php
 
+
+
  
-$x=   "                             afaffaf   akakakakkak   ";
-$y= trim($x);
-
-echo $y;
-
-
-
 
 ?>
+
+
+<form action="" method="post">
+	
+
+
+<input type="text" name="tchName">
+<input type="text" name="tchLastname">
+<br>
+<input type="text" name="tchBirthday">
+
+<input type="submit" name="editTch">
+
+
+
+
+
+
+</form>
 
 
 <!-- class Database {

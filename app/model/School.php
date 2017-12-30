@@ -26,9 +26,7 @@ public function createSchool(){
     $name = trim($chTagsN);
     $this->sch_name = $name;
 
-     $chTagsY = strip_tags($_POST['schYear']);
-     $year = trim($chTagsY);
-
+     $year = strip_tags($_POST['schYear']);
      $this->sch_year = $year;
 
      if(isset($_POST['schCity']) && is_string($_POST['schCity'])){
@@ -45,12 +43,6 @@ public function createSchool(){
     else {
       echo "Invalid data";
     }
-
-  	
-  	
-  	
-
-
   	
   }
 
@@ -68,7 +60,7 @@ public function deleteSch($id){
 }
 
 
-public function pagination(){
+public static function pagination(){
 
   $pagesNum = self::pageNum(); 
 

@@ -1,9 +1,11 @@
 <?php
 
-require '../model/School.php';
+require '../model/Teacher.php';
 require '../model/Database.php';
 
-$data = School::pagination();
+
+$data= Teacher::pagination();
+
 
 echo json_encode($data);
 

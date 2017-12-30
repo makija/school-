@@ -5,7 +5,7 @@ abstract class Records{
 
 
 
-	public static function getAll($filter=""){
+	public static function getAll($filter="", $from =' * ',$join =''){
 
 		$db = Database::conn();
 
@@ -14,7 +14,7 @@ abstract class Records{
 		$table= static::$table;
 		$key = static::$key;
 
-		$q = $db->query('select * from '.$table.' ' .$filter);
+		$q = $db->query('select '.$from.' from '.$table.' '.$join.' '.$filter);
 
 	
 
@@ -33,7 +33,7 @@ abstract class Records{
 	}
 
 
-	public static function get($id){
+	public static function get($id,$from='*',$join=''){
 
 		$table= static::$table;
 		$key = static::$key;
@@ -42,7 +42,7 @@ abstract class Records{
 
 
 
-		$q= $db->query('select * from '.$table.' where '.$key.' = '.$id);
+		$q= $db->query('select '. $from .' from '.$table.' '. $join .' where '.$key.' = '.$id);
 
 
 		$q->setFetchMode(PDO::FETCH_CLASS, get_called_class());
@@ -58,7 +58,7 @@ abstract class Records{
 	}
 
 
-	static function pageNum(){
+	public static function pageNum(){
 
 		$key = static::$key;
 		$table = static::$table;
@@ -73,7 +73,7 @@ abstract class Records{
 
 	}
 
-	function generateFields(){
+	public function generateFields(){
 
 		$fields='';
 		$keyCol= static::$key;
@@ -93,33 +93,37 @@ abstract class Records{
 
 
 
-	function save (){
+	public function save (){
 		$table = static::$table;
 		$db = Database::conn();
 		$query = "insert into {$table} set ";
 		$query.=$this->generateFields();
 		$db->exec($query);
-		// $keyCol = static::$key;
-		// $this->$keyCol = $db->lastInsertId();
-
+		
 	}
 
 
-	function update($id){
+	public function update($id){
 		$db = Database::conn();
+
 		$table = static::$table;
 		$idCol = static::$key;
+		
 		$query = "update {$table} set ";
 		$query.= $this->generateFields();
+
 		$query .= " where {$idCol} = {$id}";
-		$db->exec($query);
+
 		echo $query;
+		$db->exec($query);
+	
+
 		
 	}
 
 
 
-	 function  delete($id){
+	 public function  delete($id){
 		$db = Database::conn();
 		$table = static::$table;
 		$key = static::$key;

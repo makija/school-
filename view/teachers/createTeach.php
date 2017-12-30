@@ -1,7 +1,4 @@
 
-<?php 
-$s= new Teacher;
-$s->createTeacher(); ?>
 <div class="row">
 	<div class="col-md-8">
 
@@ -17,11 +14,15 @@ $s->createTeacher(); ?>
 
   <select id="selSch"  class="custom-select" name="schId">
   <option selected disabled>Select school</option>
+
+
 <?php foreach($this->schools as $sch){ ?>
   
   <option value="<?= $sch->sch_id ?>"><?= $sch->sch_name ?></option>
   
   <?php }?>
+
+
 </select>
 
 </div>
@@ -36,7 +37,7 @@ $s->createTeacher(); ?>
     <input type="text" class="form-control" id="lstName" name="tchLastname">
   </div>
   <div class="form-group">
-    <label for="schCity">Birthday</label>
+    <label for="schCity">Birthday <small>mm/dd/yyyy</small></label>
     <input type="date" class="form-control" id="brthDate" name="tchBirthday">
   </div>
 
@@ -51,3 +52,18 @@ $s->createTeacher(); ?>
 </form>
 </div>
 </div>
+
+
+
+<script type="text/javascript">
+  
+
+var x = $("#brthDate")
+  .keyup(function() {
+    var value = $( this ).val();
+    $( "p" ).text( value );
+  })
+
+console.log(x);
+
+</script>
