@@ -115,6 +115,7 @@ abstract class Records{
 		$query .= " where {$idCol} = {$id}";
 
 		echo $query;
+		
 		$db->exec($query);
 	
 

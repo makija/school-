@@ -5,7 +5,7 @@ $schools= $this->schools;
 $selected='';
 
 $t = new Teacher;
-$t->update($_GET['id']);
+$t->editTeacher($_GET['id']);
 
 
 ?>

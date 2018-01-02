@@ -1,6 +1,7 @@
 <?php
 
-
+$t = new Teacher;
+$t->update(16);
 
  
 

@@ -58,7 +58,7 @@ class Teacher extends Records{
   }
 
 
-   public function editTeacher(){
+   public function editTeacher($id){
 
     $pattern='^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$^';
 
@@ -71,6 +71,7 @@ class Teacher extends Records{
 
           $chTagsN = strip_tags($_POST['tchName']);
           $name = trim($chTagsN);
+          echo $name;
           $this->tch_name = $name;
 
           $chTagsL = strip_tags($_POST['tchLastname']);
@@ -83,7 +84,9 @@ class Teacher extends Records{
           $schId= strip_tags($_POST['schId']);
           $this->sch_id = $schId;
 
-         $this->update();
+
+
+          $this->update($id);
 
 
 
@@ -162,6 +165,13 @@ $teachers= self::getAll($limit, $from, $join);
             return $data;
 
 }
+
+
+
+   public static function search(){
+
+    
+   }
 
 
 
