@@ -95,9 +95,13 @@ abstract class Records{
 
 	public function save (){
 		$table = static::$table;
+		
 		$db = Database::conn();
-		$query = "insert into {$table} set ";
+
+		$query = "insert into ".$table." set ";
+
 		$query.=$this->generateFields();
+
 		$db->exec($query);
 		
 	}
@@ -114,8 +118,8 @@ abstract class Records{
 
 		$query .= " where {$idCol} = {$id}";
 
-		echo $query;
-		
+	
+
 		$db->exec($query);
 	
 

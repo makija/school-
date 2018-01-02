@@ -1,4 +1,4 @@
- 
+
 
 <nav class="navbar navbar-expand-lg navbar-dark  bg-primary">
 
@@ -19,9 +19,11 @@
       </li>
 
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-primary text-light my-2 my-sm-0 btnBor" id="srcBtn" type="submit">Search</button>
+
+
+    <form method="post" action=""  class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name= "srcData">
+      <button class="btn btn-outline-primary text-light my-2 my-sm-0 btnBor" id="srcBtn" type="submit" name="btnSearch">Search</button>
     </form>
   </div>
 </nav>

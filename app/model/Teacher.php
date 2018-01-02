@@ -71,7 +71,7 @@ class Teacher extends Records{
 
           $chTagsN = strip_tags($_POST['tchName']);
           $name = trim($chTagsN);
-          echo $name;
+      
           $this->tch_name = $name;
 
           $chTagsL = strip_tags($_POST['tchLastname']);
@@ -87,6 +87,8 @@ class Teacher extends Records{
 
 
           $this->update($id);
+
+          
 
 
 
@@ -170,6 +172,74 @@ $teachers= self::getAll($limit, $from, $join);
 
    public static function search(){
 
+   if (isset($_POST['btnSearch'])){
+
+    $searchData = strip_tags($_POST['srcData']);
+
+    if (!empty($searchData)){
+
+    $data = explode(' ', $searchData);
+
+    $firstName = trim($data[0]);
+
+    $lastname = trim($data[1]);
+
+    $filter = "where tch_name like '". $firstName ."%' and tch_lastname like '". $lastname ."%'";
+    $join = "join schools using (sch_id)";
+
+    $from = "teachers.*, sch_name";
+
+    $result = self::getAll($filter, $from, $join);
+
+
+    $html= '';
+
+
+
+    if(count($result) > 0){
+
+
+    $html = '<div><ol>';
+      foreach($result as $res){
+
+        $html.='<li><a href = "?ctrl=teacher&ctrlm=edit&id='. $res->tch_id.' "">'.$res->tch_name.' '.$tch_lastname.'</a></li>';
+      }
+
+      $html.='</ol></div>';
+    }
+
+    else {
+
+
+      $html = '<div>
+
+        <p> Sorry, try again!</p>
+
+       
+      </div>';
+
+    }
+
+
+
+
+
+ echo $html;
+
+
+
+
+    }
+
+    
+
+
+
+
+
+
+
+   }
     
    }
 

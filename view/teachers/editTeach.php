@@ -60,7 +60,7 @@ $t->editTeacher($_GET['id']);
 </div>
 
 
-  <button type="submit" class="btn btn-primary" name="editTch">Save</button>
+  <button type="submit" class="btn btn-primary" name="editTch" id="editTch">Save</button>
 </form>
 </div>
 </div>

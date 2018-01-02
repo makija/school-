@@ -6,6 +6,9 @@ class teacherController extends baseController {
 
 	public function navigation(){
 
+		$t = new Teacher;
+         $t->search();
+
    return $this->getTeachers('navigation');
 
 	}
